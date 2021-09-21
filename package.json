@@ -1,0 +1,23 @@
+{
+  "name": "socket-chat",
+  "version": "1.0.0",
+  "description": "chat web app",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prinako/socket-chat.git"
+  },
+  "author": "prinako",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prinako/socket-chat/issues"
+  },
+  "homepage": "https://github.com/prinako/socket-chat#readme",
+  "dependencies": {
+    "env": "^0.0.2",
+    "express": "^4.17.1"
+  }
+}
