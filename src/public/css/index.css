@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --navbar-color: #152D35;
+  --text-color-1: #fff;
+  --back-color-contact: #345B63;
+  --backg-color-input-container: #D4ECDD;
+  --backg-color-chat-arear: #F3F1F5;
+}
+
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn {
+  padding: 0.5rem;
+}
+
+.chat-arear,
+.input-container,
+.navbar {
+  padding: .5rem;
+
+}
+
+.msg-arear,
+.contact-container,
+.msg-container {
+  height: calc(100vh - 4rem);
+}
+
+.navbar {
+  background-color: var(--navbar-color);
+  color: var(--text-color-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+}
+
+.menu {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 3.5rem;
+  width: 3.5rem;
+  padding: .8rem .7rem;
+}
+
+.menu .menu-line {
+  background-color: var(--text-color-1);
+  width: 100%;
+  height: 3px;
+
+}
+
+.brand {
+  color: var(--text-color-1);
+  margin-left: auto;
+
+}
+
+.container {
+  height: 100vh;
+}
+
+.msg-arear {
+  display: grid;
+  position: relative;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-rows: 0.5fr 4fr;
+  width: 100%;
+  position: absolute;
+  transition: 5ms all ease-in-out;
+  transform: translateX(-560px);
+}
+
+.contact-container.show {
+  transform: translateX(0);
+}
+.contact-wrapper{
+  background-color: var(--back-color-contact);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+}
+.all-contacts, .add-contact{
+  color: var(--text-color-1);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+.all-contacts:hover, .add-contact:hover{
+  background-color: var(--navbar-color);
+}
+
+.hist-contacts{
+  background-color: var(--backg-color-input-container);
+}
+.msg-container {
+  display: grid;
+  grid-template-rows: 5fr 0.5fr;
+}
+
+.chat-arear {
+  background-color: var(--backg-color-chat-arear);
+}
+
+.input-container {
+  background-color: var(--backg-color-input-container);
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.input {
+  border: 1px solid var(--back-color-contact);
+  border-radius: 5rem;
+  padding: .5rem 1rem;
+  width: 80%;
+  font-size: 18px;
+  outline: none;
+}
+
+.sen-btn {
+  width: 15%;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 800px) {
+  .msg-arear {
+    grid-template-columns: 1.5fr 3fr;
+  }
+
+  .contact-container {
+    position: static;
+    display: block;
+    transform: translateX(0);
+  }
+
+  .menu {
+    display: none;
+  }
+}
