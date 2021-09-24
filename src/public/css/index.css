@@ -12,6 +12,11 @@
   --back-color-contact: #345B63;
   --backg-color-input-container: #D4ECDD;
   --backg-color-chat-arear: #F3F1F5;
+  --sender-text-color: #C8C6C6;
+  --cancel-btn-backg: #FF4848;
+  --cancel-btn-backg-on-hover: #FE8F8F;
+  --add-btn-backg: #5de08f;
+  --add-btn-backg-on-hover: #97e0b3;
 }
 
 html {
@@ -22,7 +27,6 @@ html {
   padding: 0.5rem;
 }
 
-.chat-arear,
 .input-container,
 .navbar {
   padding: .5rem;
@@ -69,6 +73,17 @@ html {
 
 }
 
+.call-container {
+  display: flex;
+  border: solid;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.5rem;
+  padding: 0 .5rem;
+  height: 100%;
+}
+
 .container {
   height: 100vh;
 }
@@ -84,19 +99,23 @@ html {
   width: 100%;
   position: absolute;
   transition: 5ms all ease-in-out;
-  transform: translateX(-560px);
+  /*transform: translateX(-860px);*/
 }
 
 .contact-container.show {
   transform: translateX(0);
 }
-.contact-wrapper{
+
+.contact-wrapper {
   background-color: var(--back-color-contact);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: .5fr 1fr 1fr;
   gap: 1px;
 }
-.all-contacts, .add-contact{
+
+.all-msg,
+.all-contacts,
+.add-contact {
   color: var(--text-color-1);
   cursor: pointer;
   display: flex;
@@ -105,13 +124,88 @@ html {
   text-align: center;
 
 }
-.all-contacts:hover, .add-contact:hover{
+
+.all-msg:hover,
+.all-contacts:hover,
+.add-contact:hover {
   background-color: var(--navbar-color);
 }
 
-.hist-contacts{
+.add-container {
+  background-color: var(--back-color-contact);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border: solid;
+  width: 100%;
+  height: calc(100vh - 4rem);
+  opacity: 0.88;
+}
+
+.add-wrapper {
+  background-color: var(--backg-color-input-container);
+  border-radius: .5rem;
+  width: calc(100% - 2rem);
+  height: calc(100% - 12rem);
+}
+.add-wrapper .title{
+  text-align: center;
+  padding: 1rem;
+}
+.add-input-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.add-input-container label {
+  margin-top: 0.5rem;
+  font-size: 18px;
+}
+
+.add-input-container input {
+  border: none;
+  border-radius: .5rem;
+  padding: 0.5rem 1rem;
+  font-size: 17px;
+  height: 3rem;
+  outline: none;
+}
+.add-input-container input:focus {
+  border: solid 1px var(--back-color-contact);
+}
+.add-btn-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.add-btn-container button {
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 18px;
+  width: 7rem;
+  height: 3rem;
+}
+
+.cancel-btn {
+  background-color: var(--cancel-btn-backg);
+}
+.cancel-btn:hover {
+  background-color: var(--cancel-btn-backg-on-hover);
+}
+
+.add-btn {
+  background-color: var(--add-btn-backg);
+}
+.add-btn:hover {
+  background-color: var(--add-btn-backg-on-hover);
+}
+.hist-contacts {
   background-color: var(--backg-color-input-container);
 }
+
 .msg-container {
   display: grid;
   grid-template-rows: 5fr 0.5fr;
@@ -119,6 +213,40 @@ html {
 
 .chat-arear {
   background-color: var(--backg-color-chat-arear);
+}
+
+.message-bubble-container {
+  overflow: auto;
+  height: 100%;
+  border: red solid;
+}
+
+.message-bubble {
+  width: 100%;
+  padding: .5rem;
+}
+
+.text-msg-wrapper {
+  background-color: var(--text-color-1);
+  border-radius: .5rem;
+  display: inline-block;
+  min-width: 3.5rem;
+  max-width: 70%;
+  padding: .5rem;
+}
+
+.text-msg-wrapper .text-message {
+  font-size: 18px;
+  word-wrap: break-word;
+}
+
+.text-msg-wrapper .sender-name {
+  border: solid;
+  color: var(--sender-text-color);
+  display: inline-block;
+  font-size: 12px;
+  text-align: right;
+  width: 100%;
 }
 
 .input-container {
@@ -149,7 +277,6 @@ html {
 
   .contact-container {
     position: static;
-    display: block;
     transform: translateX(0);
   }
 
