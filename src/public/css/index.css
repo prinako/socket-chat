@@ -17,6 +17,9 @@
   --cancel-btn-backg-on-hover: #FE8F8F;
   --add-btn-backg: #5de08f;
   --add-btn-backg-on-hover: #97e0b3;
+  --chat-background-image: url("https://www.transparenttextures.com/patterns/connected.png");
+  --contact-background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
+
 }
 
 html {
@@ -28,7 +31,8 @@ html {
 }
 
 .input-container,
-.navbar {
+.navbar,
+.cont-body-container {
   padding: .5rem;
 
 }
@@ -39,6 +43,10 @@ html {
   height: calc(100vh - 4rem);
 }
 
+.container {
+  height: 100vh;
+}
+
 .navbar {
   background-color: var(--navbar-color);
   color: var(--text-color-1);
@@ -47,6 +55,7 @@ html {
   align-items: center;
   width: 100%;
   height: 4rem;
+  gap: .5rem;
 }
 
 .menu {
@@ -69,8 +78,6 @@ html {
 
 .brand {
   color: var(--text-color-1);
-  margin-left: auto;
-
 }
 
 .call-container {
@@ -84,10 +91,6 @@ html {
   height: 100%;
 }
 
-.container {
-  height: 100vh;
-}
-
 .msg-arear {
   display: grid;
   position: relative;
@@ -98,12 +101,16 @@ html {
   grid-template-rows: 0.5fr 4fr;
   width: 100%;
   position: absolute;
-  transition: 5ms all ease-in-out;
-  /*transform: translateX(-860px);*/
+  transition: 500ms all ease-in-out;
+  transform: translateX(-500px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .contact-container.show {
   transform: translateX(0);
+  opacity: 1;
+  pointer-events: unset;
 }
 
 .contact-wrapper {
@@ -137,22 +144,35 @@ html {
   align-items: center;
   justify-content: center;
   position: absolute;
-  border: solid;
   width: 100%;
   height: calc(100vh - 4rem);
-  opacity: 0.88;
+  opacity: 0;
+  transform: scale(0, 0);
+  transition: all 200ms ease-in;
+}
+
+.add-container.show-add-modal {
+  transform: scale(1);
+  opacity: 0.90;
 }
 
 .add-wrapper {
   background-color: var(--backg-color-input-container);
   border-radius: .5rem;
   width: calc(100% - 2rem);
-  height: calc(100% - 12rem);
+  opacity: 0;
+  transition: all 200ms ease-in;
 }
-.add-wrapper .title{
+
+.add-container.show-add-modal>.add-wrapper {
+  opacity: 1;
+}
+
+.add-wrapper .title {
   text-align: center;
-  padding: 1rem;
+  padding-top: 1rem;
 }
+
 .add-input-container {
   display: flex;
   flex-direction: column;
@@ -172,13 +192,15 @@ html {
   height: 3rem;
   outline: none;
 }
+
 .add-input-container input:focus {
   border: solid 1px var(--back-color-contact);
 }
+
 .add-btn-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 2rem;
+  margin: 2rem 0 2rem 0;
 }
 
 .add-btn-container button {
@@ -192,6 +214,7 @@ html {
 .cancel-btn {
   background-color: var(--cancel-btn-backg);
 }
+
 .cancel-btn:hover {
   background-color: var(--cancel-btn-backg-on-hover);
 }
@@ -199,11 +222,23 @@ html {
 .add-btn {
   background-color: var(--add-btn-backg);
 }
+
 .add-btn:hover {
   background-color: var(--add-btn-backg-on-hover);
 }
+
 .hist-contacts {
   background-color: var(--backg-color-input-container);
+  background-image: var(--contact-background-image);
+  overflow-y: auto;
+}
+
+.cont-body-container {
+  background-color: var(--text-color-1);
+  border-radius: .5rem;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.164);
+  margin-top: .235rem;
+  padding: .5rem 1rem;
 }
 
 .msg-container {
@@ -213,10 +248,11 @@ html {
 
 .chat-arear {
   background-color: var(--backg-color-chat-arear);
+  background-image: var(--chat-background-image);
 }
 
 .message-bubble-container {
-  overflow: auto;
+  overflow-y: auto;
   height: 100%;
   border: red solid;
 }
@@ -235,13 +271,14 @@ html {
   padding: .5rem;
 }
 
-.text-msg-wrapper .text-message {
+.text-msg-wrapper .text-message,
+.cont-body-container .user-name {
   font-size: 18px;
   word-wrap: break-word;
 }
 
-.text-msg-wrapper .sender-name {
-  border: solid;
+.text-msg-wrapper .sender-name,
+.cont-body-container .user-ID {
   color: var(--sender-text-color);
   display: inline-block;
   font-size: 12px;
@@ -278,6 +315,8 @@ html {
   .contact-container {
     position: static;
     transform: translateX(0);
+    opacity: 1;
+    pointer-events: unset
   }
 
   .menu {

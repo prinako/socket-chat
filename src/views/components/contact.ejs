@@ -2,10 +2,12 @@
     <div class="contact-wrapper">
         <div class="all-msg">All</div>
         <div class="all-contacts">Contacts</div>
-        <div class="add-contact">add</div>
+        <div id="add-contact-btn" class="add-contact">add</div>
     </div>
-    <div class="add-container">
+    <div id="add-container" class="add-container">
         <%-include('addContact') %> 
     </div>
-    <div class="hist-contacts">contact</div>
+    <div class="hist-contacts">
+        <%-include('contactBody') %> 
+    </div>
 </div>

@@ -1,18 +1,22 @@
-const express = require('express');
-const expressLayout = require('express-ejs-layouts');
-const path = require('path')
-
+const express = require("express");
+const expressLayout = require("express-ejs-layouts");
 const app = express();
+const server = require('http').Server(app)
+const io = require("socket.io")(server);
+const path = require("path");
 
-
-app.set("views", __dirname + "/views");
+app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
-app.use(expressLayout)
-app.set("layout", "./layout/layout")
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(expressLayout);
+app.set("layout", "./layout/layout");
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("", (req, res) => {
   res.render("index");
 });
 
-app.listen(5500, () => console.log("on port 5500"));
+io.on("connection", (socket) => {
+  console.log(socket.id);
+});
+
+server.listen(5500, () => console.log("on port 5500"));
