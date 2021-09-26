@@ -8,21 +8,25 @@ const yourId = document.getElementById("your-id");
 const addBtn = document.getElementById("add-btn");
 
 let url = window.location.host;
+try {
+  const id = yourId.value;
 
-const id = yourId.value;
-
-if (id !== "") {
-  if (localStorage.your_app_id !== id) {
-    localStorage.clear();
-    localStorage.setItem(`${id}_contacts`, []);
-    localStorage.setItem("your_app_id", id);
+  if (id !== "") {
+    if (localStorage.your_app_id !== id) {
+      localStorage.clear();
+      localStorage.setItem(`${id}_contacts`, []);
+      localStorage.setItem("your_app_id", id);
+    }
   }
-}
+} catch {}
 
 const userId = localStorage.your_app_id;
 const contactsId = `${userId}_contacts`;
 
-see();
+try{
+  see();
+}catch{}
+
 
 const socket = io(url, { query: { id: userId } });
 
@@ -98,16 +102,17 @@ addBtn.addEventListener("click", () => {
   see();
   newContact.value = "";
 });
-
-function see() {
-  if (localStorage.getItem(contactsId)) {
-    document.getElementById("contacts-hist").innerHTML = "";
-    const allMyContact = JSON.parse(localStorage.getItem(contactsId));
-    contactBody(allMyContact);
-  } else {
-    document.getElementById("contacts-hist").innerHTML = "";
+try {
+  function see() {
+    if (localStorage.getItem(contactsId)) {
+      document.getElementById("contacts-hist").innerHTML = "";
+      const allMyContact = JSON.parse(localStorage.getItem(contactsId));
+      contactBody(allMyContact);
+    } else {
+      document.getElementById("contacts-hist").innerHTML = "";
+    }
   }
-}
+} catch {}
 
 function contactBody(allMyContact) {
   allMyContact.map((contact, index) => {
