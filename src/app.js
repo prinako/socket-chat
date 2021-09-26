@@ -1,7 +1,7 @@
 const express = require("express");
 const expressLayout = require("express-ejs-layouts");
 const app = express();
-const server = require("http").Server(app);
+const server = require("https").Server(app);
 const io = require("socket.io")(server);
 const path = require("path");
 
