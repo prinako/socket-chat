@@ -38,4 +38,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5500, () => console.log("on port 5500"));
+const port = process.env.PORT || 5500;
+server.listen(port, () => console.log(`on port ${port}`));

@@ -7,14 +7,9 @@ const sendBtn = document.getElementById("send-btn");
 const yourId = document.getElementById("your-id");
 const addBtn = document.getElementById("add-btn");
 
-let url;
-if (window.navigator.platform == "Linux x86_64") {
-  url = "http://localhost:5500";
-} else {
-  url = "http://192.168.0.103:5500";
-}
+let url = window.location.host;
+
 const id = yourId.value;
-console.log(id);
 
 if (id !== "") {
   if (localStorage.your_app_id !== id) {
@@ -30,8 +25,6 @@ const contactsId = `${userId}_contacts`;
 see();
 
 const socket = io(url, { query: { id: userId } });
-
-//socket.on("connect", () => console.log(`connect ${socket.id}`));
 
 menuBtn.onclick = () => {
   contactContainer.classList.toggle("show");
