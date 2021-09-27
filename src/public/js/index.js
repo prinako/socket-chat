@@ -8,25 +8,21 @@ const yourId = document.getElementById("your-id");
 const addBtn = document.getElementById("add-btn");
 
 let url = window.location.host;
-try {
-  const id = yourId.value;
 
-  if (id !== "") {
-    if (localStorage.your_app_id !== id) {
-      localStorage.clear();
-      localStorage.setItem(`${id}_contacts`, []);
-      localStorage.setItem("your_app_id", id);
-    }
+const id = yourId.value;
+
+if (id !== "") {
+  if (localStorage.your_app_id !== id) {
+    localStorage.clear();
+    localStorage.setItem(`${id}_contacts`, []);
+    localStorage.setItem("your_app_id", id);
   }
-} catch {}
+}
 
 const userId = localStorage.your_app_id;
 const contactsId = `${userId}_contacts`;
 
-try{
-  see();
-}catch{}
-
+see();
 
 const socket = io(url, { query: { id: userId } });
 
@@ -90,8 +86,8 @@ function addMessage(msg, classNameColor, Name, classNameFlex) {
 
 addBtn.addEventListener("click", () => {
   const newContact = document.getElementById("user-name");
-    let getNewContact = newContact.value;
-    if (localStorage.getItem(contactsId)) {
+  let getNewContact = newContact.value;
+  if (localStorage.getItem(contactsId)) {
     const allContacts = JSON.parse(localStorage.getItem(contactsId));
     var toLocalstorage = [...allContacts, { id: getNewContact }];
     localStorage.setItem(contactsId, JSON.stringify(toLocalstorage));
@@ -103,17 +99,15 @@ addBtn.addEventListener("click", () => {
   newContact.value = "";
 });
 
-try {
-  function see() {
-    if (localStorage.getItem(contactsId)) {
-      document.getElementById("contacts-hist").innerHTML = "";
-      const allMyContact = JSON.parse(localStorage.getItem(contactsId));
-      contactBody(allMyContact);
-    } else {
-      document.getElementById("contacts-hist").innerHTML = "";
-    }
+function see() {
+  if (localStorage.getItem(contactsId)) {
+    document.getElementById("contacts-hist").innerHTML = "";
+    const allMyContact = JSON.parse(localStorage.getItem(contactsId));
+    contactBody(allMyContact);
+  } else {
+    document.getElementById("contacts-hist").innerHTML = "";
   }
-} catch {}
+}
 
 function contactBody(allMyContact) {
   allMyContact.map((contact, index) => {
