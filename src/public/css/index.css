@@ -23,12 +23,52 @@
 }
 
 html {
+  overflow: hidden;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
 
 .btn {
   padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.all-msg::before,
+.all-groups::before {
+  content: '';
+  position: absolute;
+  width: 95%;
+  transition: all 200ms ease-in-out;
+  transform: translateX(-300px);
+  height: 3px;
+  opacity: 0;
+  bottom: 0;
+  border-radius: 25rem;
+}
+
+.all-msg::before {
+  transform: translateX(300px);
+}
+
+.selected {
+  position: relative;
+  overflow: hidden;
+
+}
+
+.selected::before {
+  background-color: var(--add-btn-backg);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.create-group span,
+.add-contact span,
+.all-groups span,
+.all-msg span {
+  margin-right: .5rem;
+  font-size: 1.3rem;
 }
 
 .input-container,
@@ -131,19 +171,28 @@ html {
 .menu {
   background-color: transparent;
   border: none;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   height: 3.5rem;
   width: 3.5rem;
-  padding: .8rem .7rem;
+  transition: all 500ms ease-out;
+  transform: translateX(-200px);
+  pointer-events: none;
+  opacity: 0;
 }
 
-.menu .menu-line {
-  background-color: var(--text-color-1);
-  width: 100%;
-  height: 3px;
+.menu .menu-arrow {
+  color: var(--text-color-1);
+  font-size: 25px;
+}
 
+.show-menu {
+  pointer-events: unset;
+  position: static;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .brand {
@@ -152,14 +201,35 @@ html {
 
 .call-container {
   display: flex;
-  border: solid;
   justify-content: center;
   align-items: center;
   margin-left: auto;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 0 .5rem;
   height: 100%;
+  transition: all 500ms ease-in-out;
+  transform: scale(0, 0);
+  opacity: 0;
+  pointer-events: none;
 }
+
+.show-call-container {
+  transform: scale(1, 1);
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.call-container button {
+  background-color: transparent;
+  color: var(--text-color-1);
+  padding: 0;
+  height: 100%;
+  font-size: 18px;
+}
+
+.call-btn-video {}
+
+.call-btn-voice {}
 
 .msg-arear {
   display: grid;
@@ -168,7 +238,7 @@ html {
 
 .contact-container {
   display: grid;
-  grid-template-rows: 0.5fr 4fr;
+  grid-template-rows: 0.5fr 5fr .5fr;
   width: 100%;
   position: absolute;
   transition: 500ms all ease-in-out;
@@ -186,13 +256,14 @@ html {
 .contact-wrapper {
   background-color: var(--back-color-contact);
   display: grid;
-  grid-template-columns: .5fr 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
 }
 
 .all-msg,
-.all-contacts,
-.add-contact {
+.all-groups,
+.add-contact,
+.create-group {
   color: var(--text-color-1);
   cursor: pointer;
   display: flex;
@@ -202,10 +273,20 @@ html {
 
 }
 
-.all-msg:hover,
-.all-contacts:hover,
+.create-group-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.add-contact,
+.create-group {
+  background-color: var(--back-color-contact);
+}
+
+.create-group:hover,
 .add-contact:hover {
-  background-color: var(--navbar-color);
+  background-color: var(--add-btn-backg);
+  color: var(--navbar-color);
 }
 
 .add-container {
@@ -312,13 +393,28 @@ html {
   height: 3.5rem;
   cursor: pointer;
 }
-.cont-body-container:hover, .active {
+
+.cont-body-container:hover,
+.active {
   background-color: var(--add-btn-backg-on-hover);
 }
 
 .msg-container {
   display: grid;
-  grid-template-rows: 5fr 0.5fr;
+  grid-template-rows: .2fr 5fr 0.5fr;
+}
+
+.chating-with {
+  background-color: var(--add-btn-backg-on-hover);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chating-with span {
+  font-size: 14px;
+  font: optional;
+  color: var(--back-color-contact);
 }
 
 .chat-arear {
@@ -332,7 +428,6 @@ html {
   flex-direction: column;
   overflow-y: auto;
   height: 100%;
-  border: red solid;
 }
 
 .message-bubble-sended {
@@ -367,7 +462,8 @@ html {
   font-size: 18px;
   word-wrap: break-word;
 }
-.user-name-text{
+
+.user-name-text {
   pointer-events: none;
 }
 
@@ -400,10 +496,19 @@ html {
   font: optional;
 }
 
-.sen-btn {
-  width: 15%;
-  font-size: 18px;
+.send-btn {
+  background-color: var(--text-color-1);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }
+
+.send-btn span {
+  font-size: 3.5rem;
+  color: var(--navbar-color);
+}
+
 
 @media screen and (min-width: 800px) {
   .msg-arear {
@@ -419,5 +524,10 @@ html {
 
   .menu {
     display: none;
+  }
+
+  .all-msg:hover,
+  .all-groups:hover {
+    background-color: var(--navbar-color);
   }
 }
