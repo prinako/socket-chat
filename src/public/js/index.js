@@ -90,18 +90,19 @@ function addMessage(msg, classNameColor, Name, classNameFlex) {
 
 addBtn.addEventListener("click", () => {
   const newContact = document.getElementById("user-name");
-  if (localStorage.getItem(contactsId)) {
     let getNewContact = newContact.value;
+    if (localStorage.getItem(contactsId)) {
     const allContacts = JSON.parse(localStorage.getItem(contactsId));
     var toLocalstorage = [...allContacts, { id: getNewContact }];
     localStorage.setItem(contactsId, JSON.stringify(toLocalstorage));
   } else {
-    localStorage.setItem(contactsId, JSON.stringify([{ id: newContact }]));
+    localStorage.setItem(contactsId, JSON.stringify([{ id: getNewContact }]));
   }
   closeModal();
   see();
   newContact.value = "";
 });
+
 try {
   function see() {
     if (localStorage.getItem(contactsId)) {
