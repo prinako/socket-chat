@@ -26,7 +26,6 @@ app
 
 app.get("/connectME", (req, res) => {
   res.render("index", { username: userName });
-  console.log(userName);
 });
 
 io.on("connection", (socket) => {
