@@ -1,11 +1,34 @@
-<div id="contact-container" class="contact-container">
+<div id="contact-container" class="contact-container show">
     <div class="contact-wrapper">
-        <div class="all-msg">All</div>
-        <div class="all-contacts">Contacts</div>
-        <div id="add-contact-btn" class="add-contact">add</div>
+        <div class="all-msg selected">
+            <span class="fa fa-comments"></span>
+            <div>
+                All
+            </div>
+        </div>
+        <div class="all-groups">
+            <span class="fa fa-users"></span>
+            <div>
+                Groups
+            </div>
+        </div>
     </div>
-    <div id="add-container" class="add-container">
-        <%-include('addContact')-%> 
+    <div id="add-container" class="add-container ">
+        <%-include('addContact')-%>
     </div>
     <div id="contacts-hist" class="hist-contacts"></div>
+    <div class="create-group-container">
+        <div id="add-contact-btn" class="add-contact">
+            <span class="fa fa-address-book"> </span>
+            <div>
+                Add contact
+            </div>
+        </div>
+        <div id="create-group" class="create-group">
+            <span class="fa fa-users"></span>
+            <div>
+                Create Group
+            </div>
+        </div>
+    </div>
 </div>

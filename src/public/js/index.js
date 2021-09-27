@@ -6,6 +6,9 @@ const contactCancelBtn = document.getElementById("add-cancel-btn");
 const sendBtn = document.getElementById("send-btn");
 const yourId = document.getElementById("your-id");
 const addBtn = document.getElementById("add-btn");
+const callContainer = document.querySelector(".call-container");
+const allMsg = document.querySelector(".all-msg");
+const allGroups = document.querySelector(".all-groups");
 
 let url = window.location.host;
 
@@ -26,8 +29,20 @@ see();
 
 const socket = io(url, { query: { id: userId } });
 
+allGroups.addEventListener("click", () => {
+  allMsg.classList.remove("selected");
+  allGroups.classList.add("selected");
+});
+
+allMsg.addEventListener("click", () => {
+  allGroups.classList.remove("selected");
+  allMsg.classList.add("selected");
+});
+
 menuBtn.onclick = () => {
-  contactContainer.classList.toggle("show");
+  contactContainer.classList.add("show");
+  menuBtn.classList.remove("show-menu");
+  callContainer.classList.remove("show-call-container");
 };
 
 addContactBtn.onclick = () => {
@@ -134,12 +149,17 @@ function contactBody(allMyContact) {
   for (i = 0; i < allContDiv.length; ++i) {
     allContDiv[i].addEventListener("click", function (e) {
       const current = document.getElementsByClassName("active");
+      menuBtn.classList.add("show-menu");
+      contactContainer.classList.remove("show");
       if (current.length > 0) {
         current[0].className = current[0].classNameColor =
           "cont-body-container";
       }
       this.className += " active";
       localStorage.setItem("active", e.target.innerText);
+      const chatingWith = document.getElementById("chating-with-name");
+      chatingWith.innerHTML = `chating with ${e.target.innerText} ...`;
+      callContainer.classList.add("show-call-container");
     });
   }
 }
