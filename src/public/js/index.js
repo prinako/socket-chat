@@ -91,7 +91,7 @@ function mainApp(your_app_id) {
         addmessageToLocalStore(message, localStorage.active, "you");
         const classNameColorSend = "text-msg-wrapper-sended";
         const classNameFlex = "message-bubble-sended";
-        addMessage(msg.message, classNameColorSend, msg.name, classNameFlex);
+        addMessage(message, classNameColorSend, "you", classNameFlex);
       }
     }
     newMessage.value = "";
@@ -101,7 +101,7 @@ function mainApp(your_app_id) {
     if (localStorage.active == Name) {
       addmessageToLocalStore(msg, Name);
       const classNameColorReceive = "text-msg-wrapper-received";
-      addMessage(msg.message, classNameColorReceive, msg.name);
+      addMessage(msg, classNameColorReceive, Name);
     } else {
       addmessageToLocalStore(msg, Name);
     }
