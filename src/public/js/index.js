@@ -146,7 +146,6 @@ function mainApp(your_app_id) {
       document.querySelector(".message-bubble-container").scrollHeight
     );
   }
-  s 
 
   addBtn.addEventListener("click", () => {
     const newContact = document.getElementById("user-name");
