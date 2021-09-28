@@ -89,6 +89,9 @@ function mainApp(your_app_id) {
         const room = localStorage.getItem("active");
         socket.emit("send_message", message, room);
         addmessageToLocalStore(message, localStorage.active, "you");
+        const classNameColorSend = "text-msg-wrapper-sended";
+        const classNameFlex = "message-bubble-sended";
+        addMessage(msg.message, classNameColorSend, msg.name, classNameFlex);
       }
     }
     newMessage.value = "";
@@ -97,6 +100,8 @@ function mainApp(your_app_id) {
   socket.on("receive_message", (msg, Name) => {
     if (localStorage.active == Name) {
       addmessageToLocalStore(msg, Name);
+      const classNameColorReceive = "text-msg-wrapper-received";
+      addMessage(msg.message, classNameColorReceive, msg.name);
     } else {
       addmessageToLocalStore(msg, Name);
     }
@@ -111,10 +116,8 @@ function mainApp(your_app_id) {
       const allMsg = JSON.parse(localStorage.getItem(messageName));
       const addNewMsg = JSON.stringify([...allMsg, messagObj]);
       localStorage.setItem(messageName, addNewMsg);
-      findAllMessage();
     } else {
       localStorage.setItem(messageName, JSON.stringify([messagObj]));
-      findAllMessage();
     }
   }
 
@@ -143,6 +146,7 @@ function mainApp(your_app_id) {
       document.querySelector(".message-bubble-container").scrollHeight
     );
   }
+  s 
 
   addBtn.addEventListener("click", () => {
     const newContact = document.getElementById("user-name");
@@ -218,7 +222,7 @@ function mainApp(your_app_id) {
 
       if (localStorage.getItem(msgOfThisUser)) {
         const messages = JSON.parse(localStorage.getItem(msgOfThisUser));
-        
+
         messages.map((msg) => {
           if (msg.name == localStorage.active) {
             const classNameColorReceive = "text-msg-wrapper-received";
