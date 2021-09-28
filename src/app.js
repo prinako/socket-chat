@@ -29,7 +29,6 @@ io.on("connection", (socket) => {
   socket.join(id);
   socket.on("send_message", (msg, room) => {
     socket.broadcast.to(room).emit("receive_message", msg, id);
-    console.log(msg);
   });
 });
 
