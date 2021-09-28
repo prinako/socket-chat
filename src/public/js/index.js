@@ -8,6 +8,7 @@ const addBtn = document.getElementById("add-btn");
 const callContainer = document.querySelector(".call-container");
 const allMsg = document.querySelector(".all-msg");
 const allGroups = document.querySelector(".all-groups");
+const msgRoot = document.getElementById("add-message");
 // ** LOG IN **
 const loginDisplay = document.getElementById("login-display");
 const loginForm = document.getElementById("login-form");
@@ -122,7 +123,6 @@ function mainApp(your_app_id) {
   }
 
   function addMessage(msg, classNameColor, Name, classNameFlex) {
-    const msgRoot = document.getElementById("add-message");
     const messageBubble = document.createElement("div");
     messageBubble.classList.add("message-bubble", classNameFlex);
 
