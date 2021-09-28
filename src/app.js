@@ -21,12 +21,8 @@ app
     res.redirect("/connectME");
   })
   .get((req, res) => {
-    res.render("loginOrCreate");
+    res.render("index");
   });
-
-app.get("/connectME", (req, res) => {
-  res.render("index", { username: userName });
-});
 
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;

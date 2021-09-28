@@ -1,8 +1,16 @@
+<div id="notifiy-err-container" class="notifiy-contaner">
+    <div id="notifiy-err" class="notifiy-err">
+        <p class="notifiy-info">hi</p>
+    </div>
+</div>
+
 <div class="container">
     <%-include('partials/navBar')-%>
     <div class="msg-arear">
         <%-include('components/contact')-%>
         <%-include('components/messageBox')-%>
     </div>
-    <input id="your-id" type="hidden" value="<%=username-%>">
+</div>
+<div id="login-display" class="login-display show-login-display">
+    <%-include('components/loginOrCreate')-%>
 </div>

@@ -17,21 +17,67 @@
   --cancel-btn-backg-on-hover: #FE8F8F;
   --add-btn-backg: #5de08f;
   --add-btn-backg-on-hover: #97e0b3;
+  --notifiy-err-backg: #FCD2D1;
+  --notifiy-msg-backg: #DFEEEA;
   --chat-background-image: url("https://www.transparenttextures.com/patterns/connected.png");
   --contact-background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
 
 }
 
 html {
-  overflow: hidden;
+  overflow-x: hidden;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
+
+body {
+  position: relative;
+}
+
 
 .btn {
   padding: 0.5rem;
   border: none;
   cursor: pointer;
+}
+.notifiy-contaner{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 4;
+  top: 30px;
+  transition: all 500ms ease-in-out;
+  transform: translateY(-100px);
+  opacity: 0;
+}
+.notifiy-container{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.notifiy-err {
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  max-width: 450px;
+  
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.164), 1px 3px 3px rgba(0, 0, 0, 0.103), 1px 4px 2px rgba(0, 0, 0, 0.041);
+}
+
+.notifiy-err p {
+  font-size: 17px;
+  padding: .5rem;
+}
+
+.notifiy-err-color-red {
+  background-color: var(--notifiy-err-backg);
+  color: var(--navbar-color);
+}
+
+.notifiy-msg-color {
+  background-color: var(--notifiy-msg-backg);
+  color: var(--navbar-color);
 }
 
 .all-msg::before,
@@ -82,6 +128,20 @@ html {
 .contact-container,
 .msg-container {
   height: calc(100vh - 4rem);
+}
+
+.login-display {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  transition: all 500ms ease-in-out;
+  transform: scale(0, 0);
+  opacity: 0;
+}
+
+.show-login-display {
+  transform: scale(1, 1);
+  opacity: 1;
 }
 
 .login-container {
