@@ -103,7 +103,7 @@ function mainApp(your_app_id) {
   });
 
   function addmessageToLocalStore(msg, Name, you) {
-    const messagObj = { name:you ? "you" : Name, message: msg };
+    const messagObj = { name: you ? "you" : Name, message: msg };
 
     const messageName = `${Name}_messages`;
 
@@ -210,23 +210,31 @@ function mainApp(your_app_id) {
     }
   }
   if (localStorage.active) {
-    findAllMessage()
+    findAllMessage();
   }
   function findAllMessage() {
     if (localStorage.active) {
       const msgOfThisUser = `${localStorage.active}_messages`;
-      const messages = JSON.parse(localStorage.getItem(msgOfThisUser));
-      messages.map((msg) => {
-        if (msg.name == localStorage.active) {
-          const classNameColorReceive = "text-msg-wrapper-received";
-          addMessage(msg.message, classNameColorReceive, msg.name);
-        } else {
-          const classNameColorSend = "text-msg-wrapper-sended";
-          const classNameFlex = "message-bubble-sended";
-          addMessage(msg.message, classNameColorSend, msg.name, classNameFlex);
-        }
-        console.log(msg.name);
-      });
+
+      if (localStorage.getItem(msgOfThisUser)) {
+        const messages = JSON.parse(localStorage.getItem(msgOfThisUser));
+        
+        messages.map((msg) => {
+          if (msg.name == localStorage.active) {
+            const classNameColorReceive = "text-msg-wrapper-received";
+            addMessage(msg.message, classNameColorReceive, msg.name);
+          } else {
+            const classNameColorSend = "text-msg-wrapper-sended";
+            const classNameFlex = "message-bubble-sended";
+            addMessage(
+              msg.message,
+              classNameColorSend,
+              msg.name,
+              classNameFlex
+            );
+          }
+        });
+      }
     }
   }
   function closeModal() {
