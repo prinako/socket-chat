@@ -199,6 +199,7 @@ function mainApp(your_app_id) {
         const current = document.getElementsByClassName("active");
         menuBtn.classList.add("show-menu");
         contactContainer.classList.remove("show");
+        msgRoot.innerHTML = "";
         if (current.length > 0) {
           current[0].className = current[0].classNameColor =
             "cont-body-container";
