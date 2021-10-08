@@ -2,7 +2,11 @@ const express = require("express");
 const expressLayout = require("express-ejs-layouts");
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, {
+cors: { 
+  origin: "http://localhost:3000"
+}
+});
 const path = require("path");
 
 app.set("views", path.join(__dirname, "/views"));
